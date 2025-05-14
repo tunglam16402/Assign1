@@ -47,10 +47,12 @@ import ProductDetail from "@/components/products/ProductDetail";
 
 export const revalidate = 300;
 
-export default async function ProductDetailPage(props: {
+export default async function ProductDetailPage({
+  params,
+}: {
   params: { slug: string };
 }) {
-  const slug = props.params.slug;
+  const slug = params.slug;
 
   const productDoc = await Product.findById(slug).lean<IProduct>().exec();
 
