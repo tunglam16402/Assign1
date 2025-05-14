@@ -1,0 +1,39 @@
+// components/Breadcrumb.tsx
+import Link from "next/link";
+
+interface BreadcrumbProps {
+  current: string; // tên mục hiện tại, ví dụ product.title
+  base?: "products" | "about" | "blog"; // tùy theo page
+}
+
+export default function Breadcrumb({
+  current,
+  base = "products",
+}: BreadcrumbProps) {
+  const basePathMap = {
+    products: { name: "Products", href: "/products" },
+    about: { name: "About", href: "/about" },
+    blog: { name: "Blog", href: "/blog" },
+  };
+
+  const basePath = basePathMap[base];
+
+  return (
+    <nav className="text-md py-2 my-2 text-gray-600 mb-4">
+      <Link href="/" className="hover:underline text-hover">
+        Home
+      </Link>
+      {" > "}
+      <Link href={basePath.href} className="hover:underline text-hover">
+        {basePath.name}
+      </Link>
+      {" > "}
+      <span
+        className="truncate max-w-[500px] inline-block align-bottom"
+        title={current}
+      >
+        {current}
+      </span>
+    </nav>
+  );
+}

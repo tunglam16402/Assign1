@@ -1,0 +1,50 @@
+[
+  {
+    "id": "1",
+    "title": "SteelSeries Apex 3 TKL RGB Gaming Keyboard – Tenkeyless Compact Form Factor - 8-Zone RGB Illumination – IP32 Water & Dust Resistant – Whisper Quiet Gaming Switch – Gaming Grade Anti-Ghosting,Black",
+    "description": "Multimedia, Gaming",
+    "price": 39.99,
+    "compareAtPrice": 49.99,
+    "imageUrl": "/images/keyboard1.jpg"
+  },
+  {
+    "id": "2",
+    "title": "AULA F75 Pro Wireless Mechanical Keyboard,75% Hot Swappable Custom Keyboard with Knob,RGB Backlit,Pre-lubed Reaper Switches,Side Printed PBT Keycaps,2.4GHz/USB-C/BT5.0 Mechanical Gaming Keyboards",
+    "description": "Volume Roller, Backlit, Programmable Keys, Rechargeable, Hot-Swappable",
+    "price": 66.31,
+    "compareAtPrice": 82.89,
+    "imageUrl": "/images/keyboard2.jpg"
+  },
+  {
+    "id": "3",
+    "title": "Redragon S101 Gaming Keyboard, M601 Mouse, RGB Backlit Gaming Keyboard, Programmable Backlit Mouse, Value Combo Set",
+    "description": "RGB Backlit, Ergonomic, Wrist Rest, Programmable Buttons",
+    "price": 39.99,
+    "compareAtPrice": 0,
+    "imageUrl": "/images/keyboard3.jpg"
+  },
+  {
+    "id": "4",
+    "title": "TECKNET Gaming Keyboard, USB Wired Computer Keyboard, 15-Zone RGB Illumination, IP32 Water Resistance, 25 Anti-ghosting Keys, All-Metal Panel (Whisper Quiet Gaming Switch)",
+    "description": "Whisper Quiet Gaming Switch",
+    "price": 59.99,
+    "compareAtPrice": 79.99,
+    "imageUrl": "/images/keyboard4.jpg"
+  },
+  {
+    "id": "5",
+    "title": "Womier S-K80 75% Keyboard with Color Multimedia Display Mechanical Gaming Keyboard, Wired Hot Swappable Gasket Mount RGB Custom Key Board, Pre-lubed Stabilizer for Mac/Win, Black Kanagawa",
+    "description": "lack Theme Style 75% Gasket Mounted Mechanical Keyboard",
+    "price": 49.99,
+    "compareAtPrice": 0,
+    "imageUrl": "/images/keyboard5.jpg"
+  },
+  {
+    "id": "6",
+    "title": "Redragon Mechanical Gaming Keyboard Wired, 11 Programmable Backlit Modes, Hot-Swappable Red Switch, Anti-Ghosting, Double-Shot PBT Keycaps, Light Up Keyboard for PC Mac",
+    "description": "Mechanical",
+    "price": 24.99,
+    "compareAtPrice": 34.99,
+    "imageUrl": "/images/keyboard6.jpg"
+  }
+]
