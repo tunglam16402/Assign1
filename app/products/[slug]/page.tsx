@@ -47,6 +47,15 @@ import ProductDetail from "@/components/products/ProductDetail";
 
 export const revalidate = 300;
 
+// ✅ Hàm bắt buộc nếu bạn đang dùng dynamic route với SSG (tĩnh)
+export async function generateStaticParams() {
+  const products = await Product.find({}, "_id").lean();
+
+  return products.map((product) => ({
+    slug: (product._id as Types.ObjectId).toString(),
+  }));
+}
+
 export default async function ProductDetailPage({
   params,
 }: {
