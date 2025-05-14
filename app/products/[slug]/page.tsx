@@ -51,6 +51,7 @@ export default async function ProductDetailPage(props: {
   params: { slug: string };
 }) {
   const slug = props.params.slug;
+
   const productDoc = await Product.findById(slug).lean<IProduct>().exec();
 
   if (!productDoc) return notFound();
