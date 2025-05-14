@@ -9,6 +9,36 @@
 // ISG
 
 // app/product/[slug]/page.tsx
+// import Product from "@/models/Product";
+// import type { IProduct } from "@/models/Product";
+// import { Types } from "mongoose";
+// import { notFound } from "next/navigation";
+// import ProductDetail from "@/components/products/ProductDetail";
+
+// export const revalidate = 300;
+
+// interface PageProps {
+//   params: { slug: string };
+// }
+
+// export default async function ProductDetailPage({ params }: PageProps) {
+//   const { slug } = params;
+//   const productDoc = await Product.findById(slug).lean<IProduct>().exec();
+
+//   if (!productDoc) return notFound();
+
+//   const product = {
+//     id: (productDoc._id as Types.ObjectId).toString(),
+//     title: productDoc.title,
+//     description: productDoc.description,
+//     price: productDoc.price,
+//     compareAtPrice: productDoc.compareAtPrice,
+//     thumbnail: productDoc.thumbnail,
+//   };
+
+//   return <ProductDetail {...product} />;
+// }
+
 import Product from "@/models/Product";
 import type { IProduct } from "@/models/Product";
 import { Types } from "mongoose";
@@ -17,11 +47,11 @@ import ProductDetail from "@/components/products/ProductDetail";
 
 export const revalidate = 300;
 
-interface PageProps {
+export default async function ProductDetailPage({
+  params,
+}: {
   params: { slug: string };
-}
-
-export default async function ProductDetailPage({ params }: PageProps) {
+}) {
   const { slug } = params;
   const productDoc = await Product.findById(slug).lean<IProduct>().exec();
 
