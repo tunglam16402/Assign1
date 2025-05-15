@@ -39,24 +39,24 @@
 //   return <ProductDetail {...product} />;
 // }
 
+import { notFound } from "next/navigation";
 import Product from "@/models/Product";
 import type { IProduct } from "@/models/Product";
-import { Types } from "mongoose";
-import { notFound } from "next/navigation";
 import ProductDetail from "@/components/products/ProductDetail";
+import { Types } from "mongoose";
 
 export const revalidate = 300;
 
-type Props = {
+// ✅ Sử dụng chuẩn interface PageProps của Next.js
+interface PageProps {
   params: {
     slug: string;
   };
-};
+}
 
-export default async function ProductDetailPage({ params }: Props) {
-  const slug = params.slug;
+export default async function ProductDetailPage({ params }: PageProps) {
+  const { slug } = params;
 
-  // ✅ Tìm theo slug thay vì findById
   const productDoc = await Product.findOne({ slug }).lean<IProduct>().exec();
 
   if (!productDoc) return notFound();
@@ -72,4 +72,5 @@ export default async function ProductDetailPage({ params }: Props) {
 
   return <ProductDetail {...product} />;
 }
+
 
