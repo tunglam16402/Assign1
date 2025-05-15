@@ -47,11 +47,14 @@ import ProductDetail from "@/components/products/ProductDetail";
 
 export const revalidate = 300;
 
-export default async function ProductDetailPage({
-  params,
-}: {
-  params: { slug: string };
-}) {
+// ✅ Tách riêng kiểu props để tránh nhầm Promise
+type PageProps = {
+  params: {
+    slug: string;
+  };
+};
+
+export default async function ProductDetailPage({ params }: PageProps) {
   const slug = params.slug;
 
   const productDoc = await Product.findById(slug).lean<IProduct>().exec();
