@@ -89,7 +89,7 @@ export default async function ProductDetailPage({
   params: { slug: string };
 }) {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_SITE_URL}/api/products/${params.slug}`,
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/products/${params.slug}`,
     {
       next: { revalidate: 300 },
     }
