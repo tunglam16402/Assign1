@@ -71,29 +71,33 @@
 //   return <ProductDetail {...product} />;
 // }
 
-import Product from "@/models/Product";
-import type { IProduct } from "@/models/Product";
-import { Types } from "mongoose";
-import { notFound } from "next/navigation";
 import ProductDetail from "@/components/products/ProductDetail";
+import { notFound } from "next/navigation";
 
-export const revalidate = 300;
+interface Product {
+  _id: string;
+  title: string;
+  description: string;
+  price: number;
+  compareAtPrice?: number;
+  thumbnail: string;
+}
 
-export default async function Page({ params }: { params: { slug: string } }) {
-  const { slug } = params;
+export default async function ProductDetailPage({
+  params,
+}: {
+  params: { slug: string };
+}) {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_SITE_URL}/api/products/${params.slug}`,
+    {
+      next: { revalidate: 300 },
+    }
+  );
 
-  const productDoc = await Product.findById(slug).lean<IProduct>().exec();
+  if (!res.ok) return notFound();
 
-  if (!productDoc) return notFound();
+  const product: Product = await res.json();
 
-  const product = {
-    id: (productDoc._id as Types.ObjectId).toString(),
-    title: productDoc.title,
-    description: productDoc.description,
-    price: productDoc.price,
-    compareAtPrice: productDoc.compareAtPrice,
-    thumbnail: productDoc.thumbnail,
-  };
-
-  return <ProductDetail {...product} />;
+  return <ProductDetail {...product} id={product._id} />;
 }
