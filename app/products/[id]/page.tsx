@@ -42,62 +42,31 @@
 
 // app/products/[slug]/page.tsx
 
-// import Product from "@/models/Product";
-// import type { IProduct } from "@/models/Product";
-// import { Types } from "mongoose";
-// import { notFound } from "next/navigation";
-// import ProductDetail from "@/components/products/ProductDetail";
-
-// export const revalidate = 300;
-
-// export default async function ProductDetailPage(props: {
-//   params: { slug: string };
-// }) {
-//   const { params } = props;
-//   const { slug } = params;
-//   const productDoc = await Product.findById(slug).lean<IProduct>().exec();
-
-//   if (!productDoc) return notFound();
-
-//   const product = {
-//     id: (productDoc._id as Types.ObjectId).toString(),
-//     title: productDoc.title,
-//     description: productDoc.description,
-//     price: productDoc.price,
-//     compareAtPrice: productDoc.compareAtPrice,
-//     thumbnail: productDoc.thumbnail,
-//   };
-
-//   return <ProductDetail {...product} />;
-// }
-
-import ProductDetail from "@/components/products/ProductDetail";
+import Product from "@/models/Product";
+import type { IProduct } from "@/models/Product";
+import { Types } from "mongoose";
 import { notFound } from "next/navigation";
+import ProductDetail from "@/components/products/ProductDetail";
 
-interface Product {
-  _id: string;
-  title: string;
-  description: string;
-  price: number;
-  compareAtPrice?: number;
-  thumbnail: string;
-}
+export const revalidate = 300;
 
-export default async function ProductDetailPage({
-  params,
-}: {
+export default async function ProductDetailPage(props: {
   params: { id: string };
 }) {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/products/${params.id}`,
-    {
-      next: { revalidate: 300 },
-    }
-  );
+  const { params } = props;
+  const { id } = params;
+  const productDoc = await Product.findById(id).lean<IProduct>().exec();
 
-  if (!res.ok) return notFound();
+  if (!productDoc) return notFound();
 
-  const product: Product = await res.json();
+  const product = {
+    id: (productDoc._id as Types.ObjectId).toString(),
+    title: productDoc.title,
+    description: productDoc.description,
+    price: productDoc.price,
+    compareAtPrice: productDoc.compareAtPrice,
+    thumbnail: productDoc.thumbnail,
+  };
 
-  return <ProductDetail {...product} id={product._id} />;
+  return <ProductDetail {...product} />;
 }
