@@ -39,8 +39,6 @@
 //   return <ProductDetail {...product} />;
 // }
 
-// app/products/[slug]/page.tsx
-
 import Product from "@/models/Product";
 import type { IProduct } from "@/models/Product";
 import { Types } from "mongoose";
@@ -49,19 +47,17 @@ import ProductDetail from "@/components/products/ProductDetail";
 
 export const revalidate = 300;
 
-// ✅ Đổi tên type và KHÔNG export
-type ProductDetailPageProps = {
+type Props = {
   params: {
     slug: string;
   };
 };
 
-export default async function ProductDetailPage({
-  params,
-}: ProductDetailPageProps) {
+export default async function ProductDetailPage({ params }: Props) {
   const slug = params.slug;
 
-  const productDoc = await Product.findById(slug).lean<IProduct>().exec();
+  // ✅ Tìm theo slug thay vì findById
+  const productDoc = await Product.findOne({ slug }).lean<IProduct>().exec();
 
   if (!productDoc) return notFound();
 
@@ -76,3 +72,4 @@ export default async function ProductDetailPage({
 
   return <ProductDetail {...product} />;
 }
+
