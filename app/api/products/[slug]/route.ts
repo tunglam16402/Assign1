@@ -23,15 +23,16 @@
 // }
 
 import Product from "@/models/Product";
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 
 export async function GET(
-  _request: NextRequest,
-  context: { params: { slug: string } }
+  _request: Request,
+  { params }: { params: { slug: string } }
 ) {
   try {
-    const { slug } = context.params;
+    const { slug } = params;
     const product = await Product.findOne({ slug });
+    console.log(product);
 
     if (!product) {
       return NextResponse.json(
