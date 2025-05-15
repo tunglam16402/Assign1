@@ -86,10 +86,10 @@ interface Product {
 export default async function ProductDetailPage({
   params,
 }: {
-  params: { slug: string };
+  params: { id: string };
 }) {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/products/${params.slug}`,
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/products/${params.id}`,
     {
       next: { revalidate: 300 },
     }
