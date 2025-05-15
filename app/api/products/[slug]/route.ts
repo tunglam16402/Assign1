@@ -1,21 +1,13 @@
 import { NextResponse } from "next/server";
-import Product from "@/models/Product";
+import data from "@/data/products.json";
 
 export async function GET(
   request: Request,
   { params }: { params: { slug: string } }
 ) {
-  try {
-    const product = await Product.findById(params.slug).lean();
-    if (!product)
-      return NextResponse.json({ message: "Not Found" }, { status: 404 });
-
-    return NextResponse.json(product);
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  } catch (error) {
-    return NextResponse.json(
-      { message: "Error fetching product" },
-      { status: 500 }
-    );
+  const product = data.find((item) => item.id === params.slug);
+  if (!product) {
+    return NextResponse.json({ message: "Product not found" }, { status: 404 });
   }
+  return NextResponse.json(product);
 }
