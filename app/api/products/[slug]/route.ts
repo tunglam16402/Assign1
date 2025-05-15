@@ -26,11 +26,11 @@ import Product from "@/models/Product";
 import { NextResponse } from "next/server";
 
 export async function GET(
-  request: Request,
-  { params }: { params: { slug: string } }
+  _request: Request,
+  context: { params: { slug: string } }
 ) {
   try {
-    const { slug } = params;
+    const { slug } = context.params;
     const product = await Product.findOne({ slug });
     console.log(product);
 
