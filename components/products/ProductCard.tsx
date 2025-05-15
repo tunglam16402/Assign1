@@ -17,7 +17,6 @@ interface ProductCardProps {
 }
 
 export default function ProductCard({ product }: ProductCardProps) {
-  console.log("product.thumbnail:", product.thumbnail);
   console.log("product.title:", product.title);
   return (
     <div className="group border border-gray-100 rounded-lg overflow-hidden transform transition hover:scale-102">

@@ -9,6 +9,7 @@
 // ISG
 
 import ProductDetail from "@/components/products/ProductDetail";
+import { getProductDetails } from "@/lib/api/product";
 import { notFound } from "next/navigation";
 
 export const revalidate = 300;
@@ -17,22 +18,8 @@ interface Props {
   params: { slug: string };
 }
 
-const getProductDetails = async (id: string) => {
-  try {
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BASE_URL}/api/products/${id}`
-    );
-    const data = await res.json();
-    return data;
-  } catch (error) {
-    console.error(error);
-    return null;
-  }
-};
-
 export default async function Page({ params }: Props) {
-  const { slug } = params;
-  const product = await getProductDetails(slug);
+  const product = await getProductDetails(params.slug);
   if (!product) return notFound();
 
   return <ProductDetail product={product} />;
