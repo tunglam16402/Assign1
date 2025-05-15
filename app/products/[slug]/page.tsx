@@ -79,13 +79,7 @@ import ProductDetail from "@/components/products/ProductDetail";
 
 export const revalidate = 300;
 
-type Props = {
-  params: {
-    slug: string;
-  };
-};
-
-export default async function Page({ params }: Props) {
+export default async function Page({ params }: { params: { slug: string } }) {
   const { slug } = params;
 
   const productDoc = await Product.findById(slug).lean<IProduct>().exec();
