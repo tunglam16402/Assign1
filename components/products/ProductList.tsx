@@ -7,6 +7,7 @@ type Product = {
   thumbnail: string;
   description?: string;
   compareAtPrice?: number;
+  slug: string;
 };
 
 interface ProductListProps {
@@ -18,7 +19,7 @@ export default function ProductList({ products }: ProductListProps) {
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
       {products.map((product) => (
         <ProductCard
-          key={product._id}
+          key={product.slug}
           product={{
             _id: product._id,
             title: product.title,
@@ -26,6 +27,7 @@ export default function ProductList({ products }: ProductListProps) {
             thumbnail: product.thumbnail,
             description: product.description,
             compareAtPrice: product.compareAtPrice,
+            slug: product.slug,
           }}
         />
       ))}

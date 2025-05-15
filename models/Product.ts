@@ -6,6 +6,7 @@ export interface IProduct extends Document {
   price: number;
   compareAtPrice: number;
   thumbnail: string;
+  slug: string;
 }
 
 const ProductSchema: Schema = new Schema({
@@ -14,6 +15,7 @@ const ProductSchema: Schema = new Schema({
   price: { type: Number, required: true },
   compareAtPrice: { type: Number, required: true },
   thumbnail: { type: String, required: true },
+  slug: { type: String, required: true, unique: true },
 });
 
 const Product =

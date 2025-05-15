@@ -6,19 +6,24 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "update-slugs": "ts-node --project tsconfig.scripts.json scripts/update-slugs.ts"
   },
   "dependencies": {
+    "dotenv": "^16.5.0",
     "lucide-react": "^0.510.0",
     "mongodb": "^6.16.0",
     "mongoose": "^8.14.3",
     "next": "15.3.2",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "slugify": "^1.6.6",
+    "ts-node": "^10.9.2"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
+    "@types/dotenv": "^6.1.1",
     "@types/mongoose": "^5.11.96",
     "@types/node": "^20",
     "@types/react": "^19",

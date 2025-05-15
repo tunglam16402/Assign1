@@ -10,6 +10,7 @@ type ProductProps = {
     price: number;
     compareAtPrice?: number;
     thumbnail: string;
+    slug: string;
   };
 };
 

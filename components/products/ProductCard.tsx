@@ -9,6 +9,7 @@ type ProductType = {
   price: number;
   compareAtPrice?: number;
   thumbnail: string;
+  slug: string;
 };
 
 interface ProductCardProps {
@@ -20,7 +21,7 @@ export default function ProductCard({ product }: ProductCardProps) {
   console.log("product.title:", product.title);
   return (
     <div className="group border border-gray-100 rounded-lg overflow-hidden transform transition hover:scale-102">
-      <Link href={`/products/${product._id}`}>
+      <Link href={`/products/${product.slug}`}>
         <div className="relative w-full h-90">
           <Image
             src={product.thumbnail || "/placeholder_image.svg"}

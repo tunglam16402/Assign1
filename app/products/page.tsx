@@ -10,6 +10,7 @@ type ProductFromApi = {
   thumbnail: string;
   description?: string;
   compareAtPrice?: number;
+  slug: string;
 };
 
 async function fetchProducts(): Promise<ProductFromApi[]> {

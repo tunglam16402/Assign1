@@ -31,7 +31,7 @@ export async function GET(
 ) {
   try {
     const { slug } = params;
-    const product = await Product.findById(slug);
+    const product = await Product.findOne({ slug });
     console.log(product);
 
     if (!product) {
