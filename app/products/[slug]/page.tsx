@@ -47,17 +47,14 @@ import { Types } from "mongoose";
 
 export const revalidate = 300;
 
-// ✅ Sử dụng chuẩn interface PageProps của Next.js
-interface PageProps {
-  params: {
-    slug: string;
-  };
-}
+export default async function ProductDetailPage({
+  params,
+}: {
+  params: { slug: string };
+}) {
+  const slug = params.slug;
 
-export default async function ProductDetailPage({ params }: PageProps) {
-  const { slug } = params;
-
-  const productDoc = await Product.findOne({ slug }).lean<IProduct>().exec();
+  const productDoc = await Product.findById(slug).lean<IProduct>().exec();
 
   if (!productDoc) return notFound();
 
@@ -72,5 +69,3 @@ export default async function ProductDetailPage({ params }: PageProps) {
 
   return <ProductDetail {...product} />;
 }
-
-
