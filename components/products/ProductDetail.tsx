@@ -1,17 +1,21 @@
-import Image from "next/image";
 import Breadcrumb from "@/components/common/Breadcrumb";
+import Image from "next/image";
 import Button from "../ui/Button";
 
 type ProductProps = {
-  id: string;
-  title: string;
-  description?: string;
-  price: number;
-  compareAtPrice?: number;
-  thumbnail: string;
+  product: {
+    _id: string;
+    title: string;
+    description?: string;
+    price: number;
+    compareAtPrice?: number;
+    thumbnail: string;
+  };
 };
 
-export default function ProductDetail({ ...product }: ProductProps) {
+export default function ProductDetail({ product }: ProductProps) {
+  console.log("producct data", product);
+  // const { id, price } = product;
   return (
     <main className="w-main mx-auto p-6">
       <Breadcrumb current={product.title} />

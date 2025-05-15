@@ -8,34 +8,32 @@
 // -- trường hợp that đổi quá 5 phút thì page sẽ được hiển thị data mới
 // ISG
 
-import Product from "@/models/Product";
-import type { IProduct } from "@/models/Product";
-import { Types } from "mongoose";
-import { notFound } from "next/navigation";
 import ProductDetail from "@/components/products/ProductDetail";
+import { notFound } from "next/navigation";
 
 export const revalidate = 300;
 
-interface ProductDetailPageProps {
+interface Props {
   params: { slug: string };
 }
 
-export default async function ProductDetailPage({
-  params,
-}: ProductDetailPageProps) {
+const getProductDetails = async (id: string) => {
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/api/products/${id}`
+    );
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};
+
+export default async function Page({ params }: Props) {
   const { slug } = params;
-  const productDoc = await Product.findById(slug).lean<IProduct>().exec();
+  const product = await getProductDetails(slug);
+  if (!product) return notFound();
 
-  if (!productDoc) return notFound();
-
-  const product = {
-    id: (productDoc._id as Types.ObjectId).toString(),
-    title: productDoc.title,
-    description: productDoc.description,
-    price: productDoc.price,
-    compareAtPrice: productDoc.compareAtPrice,
-    thumbnail: productDoc.thumbnail,
-  };
-
-  return <ProductDetail {...product} />;
+  return <ProductDetail product={product} />;
 }

@@ -17,22 +17,17 @@ async function fetchProducts(): Promise<ProductFromApi[]> {
   const protocol = process.env.NODE_ENV === "production" ? "https" : "http";
   const baseUrl = `${protocol}://${host}`;
 
-  const res = await fetch(`${baseUrl}/api/products`, {
-    cache: "no-store",
-  });
-
+  const res = await fetch(`${baseUrl}/api/products`);
   if (!res.ok) throw new Error("Failed to fetch products");
-
   return res.json();
 }
 
 export default async function ProductsPage() {
   const products = await fetchProducts();
-
   return (
-    <main className="w-main mx-auto">
+    <div className="w-main mx-auto">
       <h1 className="text-4xl font-semibold mb-8 mt-4">Our Products</h1>
       <ProductList products={products} />
-    </main>
+    </div>
   );
 }
