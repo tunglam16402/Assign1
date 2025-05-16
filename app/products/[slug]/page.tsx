@@ -10,12 +10,20 @@
 
 import ProductDetail from "@/components/products/ProductDetail";
 import { getProductDetails } from "@/lib/api/product";
+import { generateProductMetadata } from "@/lib/metadata";
 import { notFound } from "next/navigation";
 
 export const revalidate = 300;
 
 interface Props {
   params: { slug: string };
+}
+
+export async function generateMetaData({ params }: Props) {
+  const product = await getProductDetails(params.slug);
+  if (!product) return {};
+
+  return generateProductMetadata(product);
 }
 
 export default async function Page({ params }: Props) {

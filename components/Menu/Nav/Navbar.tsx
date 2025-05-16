@@ -3,8 +3,11 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, User, X } from "lucide-react";
 import { usePathname } from "next/navigation";
+import { CartIcon } from "@/components/cart/CartIcon";
+import { SideCart } from "@/components/cart/SideCart";
+import { useCartUI } from "@/hook/cart/useCart";
 
 const navItems = [
   { href: "/", label: "Home" },
@@ -16,6 +19,7 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
+  const { openCart } = useCartUI();
 
   const linkClass = (path: string) =>
     `pb-1 border-b-2 transition ${
@@ -57,10 +61,15 @@ const Navbar = () => {
               </Link>
             ))}
           </div>
-          <div className="hidden md:block uppercase text-lg">
-            <Link href="/login" className="text-hover">
-              Login
-            </Link>
+          <div className="flex items-center justify-center gap-2">
+            <div className="hidden md:block uppercase text-lg">
+              <Link href="/login" className="text-hover">
+                <User />
+              </Link>
+            </div>
+            <div className="hidden md:block uppercase text-lg">
+              <CartIcon onClick={openCart} />
+            </div>
           </div>
           <button
             className="md:hidden hover:cursor-pointer hover-text"
@@ -70,6 +79,9 @@ const Navbar = () => {
           </button>
         </div>
       </nav>
+      <div>
+        <SideCart />
+      </div>
 
       {/* nav mobile */}
       {mobileMenuOpen && (

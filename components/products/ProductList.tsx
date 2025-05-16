@@ -5,8 +5,8 @@ type Product = {
   title: string;
   price: number;
   thumbnail: string;
-  description?: string;
-  compareAtPrice?: number;
+  description: string;
+  compareAtPrice: number;
   slug: string;
 };
 

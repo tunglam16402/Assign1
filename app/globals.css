@@ -15,6 +15,7 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --main-color: #ff9900;
+    --darker-main-color: #ff7b00;
     --background: #ffffff;
     --foreground: #ededed;
   }
@@ -41,7 +42,14 @@ body {
 .bg-main-color {
   background-color: var(--main-color);
 }
+.bg-darker-main-color {
+  background-color: var(--darker-main-color);
+}
 
 .border-main-color {
   border-color: var(--main-color);
+}
+
+.text-main-color {
+  color: var(--main-color);
 }

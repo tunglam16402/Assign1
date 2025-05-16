@@ -41,7 +41,7 @@ export default function ProductDetail({ product }: ProductProps) {
               </span>
             )}
           </div>
-          <Button variant="secondary">ADD TO CART</Button>
+          <Button variant="primary_no_hover">ADD TO CART</Button>
         </div>
       </div>
     </main>

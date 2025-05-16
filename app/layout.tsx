@@ -4,6 +4,8 @@ import Navbar from "@/components/Menu/Nav/Navbar";
 import TopHeader from "@/components/TopHeader";
 import "./globals.css";
 import dbConnect from "@/lib/mongodb";
+import { CartProvider } from "@/context/cart/CartProvider";
+import { CartUIProvider } from "@/context/cart/CartUIContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,9 +33,13 @@ export default async function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <TopHeader />
-        <Navbar></Navbar>
-        {children}
+        <CartProvider>
+          <CartUIProvider>
+            <TopHeader />
+            <Navbar></Navbar>
+            {children}
+          </CartUIProvider>
+        </CartProvider>
       </body>
     </html>
   );
