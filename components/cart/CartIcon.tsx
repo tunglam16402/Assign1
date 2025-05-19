@@ -1,4 +1,3 @@
-// components/cart/CartIcon.tsx
 "use client";
 
 import { useCart } from "@/hook/cart/useCart";

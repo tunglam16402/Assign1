@@ -1,11 +1,12 @@
-import CartCheckOutWrapper from "@/components/cart/CartCheckOutWrapper";
+
+import CartCheckOut from "@/components/cart/CartCheckOut";
 import Breadcrumb from "@/components/common/Breadcrumb";
 
-export default async function CartCheckoutPage() {
+export default async function CartCheckOutPage() {
   return (
     <div className="w-main mx-auto">
       <Breadcrumb base="cart" current=""/>
-      <CartCheckOutWrapper />
+      <CartCheckOut />
     </div>
   );
 }

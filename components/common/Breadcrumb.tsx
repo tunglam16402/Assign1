@@ -1,9 +1,8 @@
-// components/Breadcrumb.tsx
 import Link from "next/link";
 
 interface BreadcrumbProps {
-  current: string; // tên mục hiện tại, ví dụ product.title
-  base?: "products" | "about" | "blog" | "cart"; // tùy theo page
+  current: string; 
+  base?: "products" | "about" | "blog" | "cart"; 
 }
 
 export default function Breadcrumb({
