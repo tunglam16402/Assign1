@@ -1,13 +1,16 @@
-"use client";
-
-import CartCheckOut from "@/components/cart/CartCheckOut";
+import dynamic from "next/dynamic";
 import Breadcrumb from "@/components/common/Breadcrumb";
 
-export default function CartCheckOutPage() {
+const CartCheckoutClient = dynamic(
+  () => import("@/components/cart/CartCheckoutClient"),
+  { ssr: false }
+);
+
+export default function CartPage() {
   return (
     <div className="w-main mx-auto">
       <Breadcrumb base="cart" current="" />
-      <CartCheckOut />
+      <CartCheckoutClient />
     </div>
   );
 }
