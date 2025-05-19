@@ -47,7 +47,6 @@
 //   }
 // }
 
-
 // app/products/[slug]/page.tsx
 import ProductDetail from "@/components/products/ProductDetail";
 import { getProductDetails } from "@/lib/api/product";
@@ -56,14 +55,13 @@ import { notFound } from "next/navigation";
 export const revalidate = 300;
 
 interface Props {
-  params: {
-    slug: string;
-  };
+  params: Promise<{ slug: string }>;
 }
 
 export default async function ProductDetailPage({ params }: Props) {
   try {
-    const product = await getProductDetails(params.slug);
+    const resolvedParams = await params;
+    const product = await getProductDetails(resolvedParams.slug);
     if (!product) return notFound();
     return <ProductDetail product={product} />;
   } catch (error) {
