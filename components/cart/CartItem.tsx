@@ -6,13 +6,14 @@ import type { CartItem as CI } from "@/context/cart/CartProvider";
 import Image from "next/image";
 import { QuantitySelector } from "./CartQuantitySelector";
 import clsx from "clsx";
+import React from "react";
 
 interface CartItemProps {
   item: CI;
   variant?: "sidecart" | "checkout";
 }
 
-export const CartItem = ({ item, variant = "sidecart" }: CartItemProps) => {
+const CartItemComponent = ({ item, variant = "sidecart" }: CartItemProps) => {
   const { removeItem, addItem, decreaseItem, updateItemQuantity } = useCart();
 
   return (
@@ -66,3 +67,5 @@ export const CartItem = ({ item, variant = "sidecart" }: CartItemProps) => {
     </div>
   );
 };
+
+export const CartItem = React.memo(CartItemComponent);

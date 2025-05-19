@@ -49,7 +49,7 @@ export const SideCart = () => {
 
         <div className="px-6 flex-1 overflow-y-auto">
           {items.length === 0 ? (
-            <p>Your cart is empty</p>
+            <p className="text-center mt-6">Your cart is empty</p>
           ) : (
             items.map((item) => (
               <CartItem key={item.id} item={item} variant="sidecart" />

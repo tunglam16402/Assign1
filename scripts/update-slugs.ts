@@ -6,7 +6,7 @@ dotenv.config();
 const MONGODB_URI = process.env.MONGODB_URI;
 
 if (!MONGODB_URI) {
-  throw new Error("❌ Missing MONGODB_URI in environment variables");
+  throw new Error(" Missing MONGODB_URI in environment variables");
 }
 
 async function connectDB() {
@@ -18,7 +18,7 @@ async function connectDB() {
 
 async function updateSlugs() {
   try {
-    await connectDB(); // 🔑 Phải kết nối trước!
+    await connectDB(); 
 
     const products = await Product.find({ slug: { $exists: false } });
 
@@ -29,10 +29,10 @@ async function updateSlugs() {
       console.log(`✅ Updated: ${product.title} → ${slug}`);
     }
 
-    console.log("🎉 Done!");
+    console.log("Done!");
     process.exit(0);
   } catch (err) {
-    console.error("❌ Error updating slugs:", err);
+    console.error(" Error updating slugs:", err);
     process.exit(1);
   }
 }

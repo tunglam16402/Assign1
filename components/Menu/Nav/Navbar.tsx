@@ -15,7 +15,7 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
-  const { openCart } = useCartUI();
+  const { openCart, isOpen } = useCartUI();
 
   const linkClass = (path: string) =>
     `pb-1 border-b-2 transition ${
@@ -90,9 +90,7 @@ const Navbar = () => {
           </div>
         </div>
       </nav>
-      <div>
-        <SideCart />
-      </div>
+      <div>{isOpen && <SideCart />} </div>
 
       {/* nav mobile */}
       <MobileMenu

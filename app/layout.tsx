@@ -3,6 +3,9 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import dbConnect from "@/lib/mongodb";
 import ClientLayout from "./clientLayout";
+import TopHeader from "@/components/TopHeader";
+import Navbar from "@/components/Menu/Nav/Navbar";
+import Footer from "@/components/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -36,7 +39,12 @@ export default async function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <ClientLayout>{children}</ClientLayout>
+        <ClientLayout>
+          <TopHeader />
+          <Navbar />
+          <main>{children}</main>
+          <Footer />
+        </ClientLayout>
       </body>
     </html>
   );
