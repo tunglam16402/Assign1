@@ -1,9 +1,14 @@
-import React from 'react'
-import CartCheckOut from './CartCheckOut';
+"use client";
+
+import dynamic from "next/dynamic";
+import React from "react";
+
+const CartCheckOut = dynamic(() => import("./CartCheckOut"), {
+  ssr: false,
+});
 
 const CartCheckoutClient = () => {
-    return <CartCheckOut />;
+  return <CartCheckOut />;
+};
 
-}
-
-export default CartCheckoutClient
+export default CartCheckoutClient;
