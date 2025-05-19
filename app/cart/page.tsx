@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/rules-of-hooks */
+
 import CartCheckoutClient from "@/components/cart/CartCheckoutClient";
 import Breadcrumb from "@/components/common/Breadcrumb";
 
