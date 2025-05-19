@@ -25,15 +25,11 @@
 import Product from "@/models/Product";
 import { NextRequest, NextResponse } from "next/server";
 
-type Params = {
-  params: {
-    slug: string;
-  };
-};
-
-export async function GET(_req: NextRequest, { params }: Params) {
+export async function GET(req: NextRequest) {
   try {
-    const product = await Product.findOne({ slug: params.slug });
+    const slug = req.nextUrl.pathname.split("/").pop(); // Lấy slug từ URL
+
+    const product = await Product.findOne({ slug });
 
     if (!product) {
       return NextResponse.json(
