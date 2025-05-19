@@ -32,12 +32,13 @@ export const SideCart = () => {
 
       <div
         className={`
-          fixed top-0 right-0 h-full w-[480px] bg-white shadow-xl z-50
-          rounded-tl-[40px] rounded-bl-[40px]
-          flex flex-col
-          transform transition-transform duration-300 ease-in-out
-          ${isOpen ? "translate-x-0" : "translate-x-full"}
-        `}
+    fixed top-0 right-0 h-full 
+    w-full sm:w-[480px] bg-white shadow-xl z-50
+    rounded-tl-[40px] rounded-bl-[40px]
+    flex flex-col
+    transform transition-transform duration-300 ease-in-out
+    ${isOpen ? "translate-x-0" : "translate-x-full"}
+  `}
       >
         <div className="flex items-center justify-between pt-6 pb-2 px-6 border-b">
           <h2 className="text-lg font-bold">Your Cart</h2>

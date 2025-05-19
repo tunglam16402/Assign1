@@ -20,12 +20,14 @@ export const getAllProducts = async (): Promise<ProductFromApi[]> => {
   }
 };
 
-export const getProductDetails = async (slug: string) => {
+export const getProductDetails = async (
+  slug: string
+): Promise<ProductFromApi | null> => {
   try {
     const res = await axios.get(`/api/products/${slug}`);
     return res.data;
   } catch (error) {
     console.error("getProductDetails error:", error);
-    throw new Error(`Failed to fetch product ${slug}`);
+    return null;
   }
 };

@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import Breadcrumb from "@/components/common/Breadcrumb";
 import Image from "next/image";
@@ -45,7 +45,7 @@ export default function ProductDetail({ product }: ProductProps) {
             className="object-contain "
           />
         </div>
-        <div className="flex-1 space-y-6 ml-6">
+        <div className="flex-1 space-y-6 lg:ml-6">
           <h1 className="text-2xl font-bold">{product.title}</h1>
           <p className="text-gray-700">{product.description}</p>
           <div className="flex items-baseline gap-4">
