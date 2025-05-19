@@ -3,7 +3,7 @@ import Link from "next/link";
 
 interface BreadcrumbProps {
   current: string; // tên mục hiện tại, ví dụ product.title
-  base?: "products" | "about" | "blog"; // tùy theo page
+  base?: "products" | "about" | "blog" | "cart"; // tùy theo page
 }
 
 export default function Breadcrumb({
@@ -14,6 +14,7 @@ export default function Breadcrumb({
     products: { name: "Products", href: "/products" },
     about: { name: "About", href: "/about" },
     blog: { name: "Blog", href: "/blog" },
+    cart: { name: "Shopping Cart", href: "/cart" },
   };
 
   const basePath = basePathMap[base];
@@ -27,13 +28,17 @@ export default function Breadcrumb({
       <Link href={basePath.href} className="hover:underline text-hover">
         {basePath.name}
       </Link>
-      {" > "}
-      <span
-        className="truncate max-w-[500px] inline-block align-bottom"
-        title={current}
-      >
-        {current}
-      </span>
+      {current && (
+        <>
+          {" > "}
+          <span
+            className="truncate max-w-[500px] inline-block align-bottom"
+            title={current}
+          >
+            {current}
+          </span>
+        </>
+      )}
     </nav>
   );
 }

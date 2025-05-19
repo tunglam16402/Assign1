@@ -18,7 +18,7 @@ const Button: React.FC<ButtonProps> = ({
   className = "",
   variant = "primary",
 }) => {
-  const baseStyles = "w-full px-4 py-3 rounded border cursor-pointer";
+  const baseStyles = "w-full px-4 py-3 rounded border cursor-pointer font-semibold";
   const variants = {
     primary:
       "border border-[#FF9900] hover:bg-[#FF9900] text-[#FF9900] bg-white hover:text-white transition-all hover:duration-300",

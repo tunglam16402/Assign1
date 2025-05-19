@@ -5,12 +5,14 @@ import { Trash2 } from "lucide-react";
 import type { CartItem as CI } from "@/context/cart/CartProvider";
 import Image from "next/image";
 import { QuantitySelector } from "./CartQuantitySelector";
+import clsx from "clsx";
 
 interface CartItemProps {
   item: CI;
+  variant?: "sidecart" | "checkout";
 }
 
-export const CartItem = ({ item }: CartItemProps) => {
+export const CartItem = ({ item, variant = "sidecart" }: CartItemProps) => {
   const { removeItem, addItem, decreaseItem, updateItemQuantity } = useCart();
 
   return (
@@ -23,7 +25,12 @@ export const CartItem = ({ item }: CartItemProps) => {
         className="object-contain w-[140px] h-[160px] mr-4"
       />
 
-      <div className="space-y-2">
+      <div
+        className={clsx(
+          "space-y-2",
+          variant === "checkout" && "flex items-center justify-center gap-6"
+        )}
+      >
         <p className="text-sm line-clamp-3">{item.title}</p>
         <div className="flex items-center gap-2">
           <p className="font-bold">

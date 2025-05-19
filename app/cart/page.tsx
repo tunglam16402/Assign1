@@ -1,19 +1,11 @@
-import { CartItem } from "@/components/cart/CartItem";
-import { useCart } from "@/hook/cart/useCart";
-import React from "react";
+import CartCheckOut from "@/components/cart/CartCheckOut";
+import Breadcrumb from "@/components/common/Breadcrumb";
 
-const page = () => {
-  const { items } = useCart();
-
+export default async function CartCheckoutPage() {
   return (
-    <div>
-      {items.length === 0 ? (
-        <p>Your cart is empty</p>
-      ) : (
-        items.map((item) => <CartItem key={item.id} item={item} />)
-      )}{" "}
+    <div className="w-main mx-auto">
+      <Breadcrumb base="cart" current=""/>
+      <CartCheckOut />
     </div>
   );
-};
-
-export default page;
+}

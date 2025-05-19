@@ -1,22 +1,37 @@
+"use client"
+
 import Breadcrumb from "@/components/common/Breadcrumb";
 import Image from "next/image";
 import Button from "../ui/Button";
+import { useCart, useCartUI } from "@/hook/cart/useCart";
 
 type ProductProps = {
   product: {
     _id: string;
     title: string;
-    description?: string;
+    description: string;
     price: number;
-    compareAtPrice?: number;
+    compareAtPrice: number;
     thumbnail: string;
     slug: string;
   };
 };
 
 export default function ProductDetail({ product }: ProductProps) {
-  console.log("producct data", product);
-  // const { id, price } = product;
+  const { addItem } = useCart();
+  const { openCart } = useCartUI();
+
+  const handleAddToCart = () => {
+    addItem({
+      id: product._id,
+      title: product.title,
+      price: product.price,
+      compareAtPrice: product.compareAtPrice,
+      thumbnail: product.thumbnail,
+      quantity: 1,
+    });
+    openCart();
+  };
   return (
     <main className="w-main mx-auto p-6">
       <Breadcrumb current={product.title} />
@@ -41,7 +56,9 @@ export default function ProductDetail({ product }: ProductProps) {
               </span>
             )}
           </div>
-          <Button variant="primary_no_hover">ADD TO CART</Button>
+          <Button variant="primary_no_hover" onClick={handleAddToCart}>
+            ADD TO CART
+          </Button>
         </div>
       </div>
     </main>

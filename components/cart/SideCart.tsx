@@ -50,7 +50,9 @@ export const SideCart = () => {
           {items.length === 0 ? (
             <p>Your cart is empty</p>
           ) : (
-            items.map((item) => <CartItem key={item.id} item={item} />)
+            items.map((item) => (
+              <CartItem key={item.id} item={item} variant="sidecart" />
+            ))
           )}
         </div>
 

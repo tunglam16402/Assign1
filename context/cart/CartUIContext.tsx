@@ -7,7 +7,9 @@ interface CartUIContextType {
   closeCart: () => void;
 }
 
-export const CartUIContext = createContext<CartUIContextType | undefined>(undefined);
+export const CartUIContext = createContext<CartUIContextType | undefined>(
+  undefined
+);
 
 export const CartUIProvider = ({ children }: { children: ReactNode }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -28,5 +30,3 @@ export const CartUIProvider = ({ children }: { children: ReactNode }) => {
     </CartUIContext.Provider>
   );
 };
-
-

@@ -3,17 +3,13 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { Menu, User, X } from "lucide-react";
+import { Menu, User } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { CartIcon } from "@/components/cart/CartIcon";
 import { SideCart } from "@/components/cart/SideCart";
 import { useCartUI } from "@/hook/cart/useCart";
-
-const navItems = [
-  { href: "/", label: "Home" },
-  { href: "/products", label: "Products" },
-  { href: "/about", label: "About" },
-];
+import { navItems } from "@/constanst/navItems";
+import MobileMenu from "../NavMobile/NavbarMobile";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -44,39 +40,54 @@ const Navbar = () => {
             : "bg-transparent text-black"
         }`}
       >
-        <div className="w-main flex items-center justify-between h-[80px]">
-          <Link href="/" className="flex items-center gap-2">
-            <Image
-              src={scrolled ? "/logo_white.png" : "/logo.png"}
-              alt="Logo"
-              width={130}
-              height={90}
-            />
-          </Link>
+        <div className="w-main h-[80px] flex items-center justify-between">
+          {/* Desktop layout */}
+          <div className="hidden md:flex items-center justify-between w-full">
+            <Link href="/" className="flex items-center gap-2">
+              <Image
+                src={scrolled ? "/logo_white.png" : "/logo.png"}
+                alt="Logo"
+                width={130}
+                height={90}
+              />
+            </Link>
 
-          <div className="hidden md:flex gap-10 uppercase text-lg ">
-            {navItems.map(({ href, label }) => (
-              <Link key={href} href={href} className={linkClass(href)}>
-                {label}
-              </Link>
-            ))}
-          </div>
-          <div className="flex items-center justify-center gap-2">
-            <div className="hidden md:block uppercase text-lg">
+            <div className="flex gap-10 uppercase text-lg">
+              {navItems.map(({ href, label }) => (
+                <Link key={href} href={href} className={linkClass(href)}>
+                  {label}
+                </Link>
+              ))}
+            </div>
+
+            <div className="flex items-center gap-4">
               <Link href="/login" className="text-hover">
                 <User />
               </Link>
-            </div>
-            <div className="hidden md:block uppercase text-lg">
               <CartIcon onClick={openCart} />
             </div>
           </div>
-          <button
-            className="md:hidden hover:cursor-pointer hover-text"
-            onClick={() => setMobileMenuOpen(true)}
-          >
-            <Menu />
-          </button>
+
+          {/* Mobile layout */}
+          <div className="flex md:hidden items-center justify-between w-full px-2">
+            <button onClick={() => setMobileMenuOpen(true)}>
+              <Menu className="w-6 h-6" />
+            </button>
+            <Link href="/">
+              <Image
+                src={scrolled ? "/logo_white.png" : "/logo.png"}
+                alt="Logo"
+                width={130}
+                height={90}
+              />
+            </Link>
+            <div className="flex items-center gap-4">
+              <Link href="/login">
+                <User className="w-5 h-5" />
+              </Link>
+              <CartIcon onClick={openCart} />
+            </div>
+          </div>
         </div>
       </nav>
       <div>
@@ -84,44 +95,10 @@ const Navbar = () => {
       </div>
 
       {/* nav mobile */}
-      {mobileMenuOpen && (
-        <div
-          className="fixed inset-0 z-40 bg-black/50"
-          onClick={() => setMobileMenuOpen(false)}
-        />
-      )}
-      <div
-        className={`fixed top-0 left-0 z-50 h-screen w-3/4 sm:w-1/3 bg-white p-6 transform transition-transform duration-300 ease-in-out ${
-          mobileMenuOpen ? "translate-x-0" : "-translate-x-full"
-        }`}
-      >
-        <div className="flex justify-between">
-          <div className="flex flex-col gap-6 text-lg">
-            {navItems.map(({ href, label }) => (
-              <Link
-                key={href}
-                href={href}
-                onClick={() => setMobileMenuOpen(false)}
-                className="text-black text-hover"
-              >
-                {label}
-              </Link>
-            ))}
-            <Link
-              href="/login"
-              onClick={() => setMobileMenuOpen(false)}
-              className="text-black text-hover"
-            >
-              Login
-            </Link>
-          </div>
-          <div>
-            <button onClick={() => setMobileMenuOpen(false)}>
-              <X />
-            </button>
-          </div>
-        </div>
-      </div>
+      <MobileMenu
+        isOpen={mobileMenuOpen}
+        onClose={() => setMobileMenuOpen(false)}
+      />
     </>
   );
 };
