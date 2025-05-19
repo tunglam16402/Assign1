@@ -9,6 +9,7 @@ import Button from "../ui/Button";
 
 const CartCheckOut = () => {
   const { items } = useCart();
+  console.log("CartCheckOut rendered");
 
   return (
     <div className="space-y-4">

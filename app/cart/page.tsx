@@ -1,16 +1,11 @@
-// app/cart/page.tsx
-import dynamic from "next/dynamic";
+import CartCheckOutWrapper from "@/components/cart/CartCheckOutWrapper";
 import Breadcrumb from "@/components/common/Breadcrumb";
 
-const CartCheckOut = dynamic(() => import("@/components/cart/CartCheckOut"), {
-  ssr: false,
-});
-
-export default function CartCheckoutPage() {
+export default async function CartCheckoutPage() {
   return (
     <div className="w-main mx-auto">
-      <Breadcrumb base="cart" current="" />
-      <CartCheckOut />
+      <Breadcrumb base="cart" current=""/>
+      <CartCheckOutWrapper />
     </div>
   );
 }
