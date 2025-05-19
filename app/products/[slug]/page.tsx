@@ -19,7 +19,7 @@ interface Props {
   params: { slug: string };
 }
 
-export async function generateMetaData({ params }: Props) {
+export async function generateMetadata({ params }: Props) {
   const product = await getProductDetails(params.slug);
   if (!product) return {};
 

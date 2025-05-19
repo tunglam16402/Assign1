@@ -1,8 +1,10 @@
+import { Metadata } from "next";
+
 export const generateProductMetadata = (product: {
   title: string;
   description?: string;
   thumbnail: string;
-}) => {
+}): Metadata => {
   return {
     title: `${product.title} | Amazon`,
     description: product.description || "Buy quality products at MyStore.",
